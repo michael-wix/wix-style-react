@@ -269,7 +269,7 @@ const TagExample = () => {
   const renderTag = props => <Tag {...props}>{props.label}</Tag>;
 
   const renderTagsLayout = tagsArr => (
-    <Layout gap="5px">
+    <Layout cols={tagsArr.length} gap="5px">
       {tagsArr.map((tagProps, i) =>
         renderTag({ ...tagProps, key: `tag-${i + 1}` }),
       )}
@@ -282,6 +282,7 @@ const TagExample = () => {
   const singleComponentProps = {
     name: symbol,
     componentsNames: createLinkedComponentsNames(components),
+    size: singleComponentSizes.compact,
   };
 
   return (
@@ -322,32 +323,27 @@ const LinearProgressBarExample = () => {
   const singleComponentProps = {
     name: symbol,
     componentsNames: createLinkedComponentsNames(components),
-    size: singleComponentSizes.compact,
   };
 
   return (
     <SingleComponentSideBySide {...singleComponentProps}>
       <Layout cols={2}>
-        <Layout>
-          <Cell>
+        <Cell>
+          <Layout cols={2}>
             <LinearProgressBar value={25} />
-          </Cell>
-          <Cell>
             <Box backgroundColor="D10">
               <LinearProgressBar light value={25} />
             </Box>
-          </Cell>
-        </Layout>
-        <Layout>
-          <Cell>
+          </Layout>
+        </Cell>
+        <Cell>
+          <Layout cols={2}>
             <LinearProgressBar skin="success" value={25} />
-          </Cell>
-          <Cell>
             <Box backgroundColor="D10">
               <LinearProgressBar skin="success" light value={25} />
             </Box>
-          </Cell>
-        </Layout>
+          </Layout>
+        </Cell>
       </Layout>
     </SingleComponentSideBySide>
   );
