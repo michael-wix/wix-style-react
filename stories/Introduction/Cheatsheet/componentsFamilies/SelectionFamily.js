@@ -281,9 +281,9 @@ class ListSmallThumbnailaExmaple extends PureComponent {
   render() {
     const { selected } = this.state;
     return (
-      <Layout cols={3} gap="12px">
+      <Box>
         {[1, 2, 3].map(n => (
-          <Cell key={`list-thumbnail-cell-${n}`} span={3}>
+          <Box marginRight="30px">
             <Thumbnail
               key={`list-thumbnail-${n}`}
               title="Thumbnail Title"
@@ -293,9 +293,9 @@ class ListSmallThumbnailaExmaple extends PureComponent {
               onClick={() => this.setState({ selected: n })}
               width="170px"
             />
-          </Cell>
+          </Box>
         ))}
-      </Layout>
+      </Box>
     );
   }
 }
