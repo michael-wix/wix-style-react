@@ -146,6 +146,7 @@ export const otherComponentsNames = {
   LinearProgressBar: 'LinearProgressBar',
   CircularProgressBar: 'CircularProgressBar',
   Image: 'Image',
+  Palette: 'Palette',
 };
 
 /**

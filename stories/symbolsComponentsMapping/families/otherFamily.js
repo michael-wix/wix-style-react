@@ -28,4 +28,6 @@ export const otherSymbolsToComponents = {
   [otherSymbols.circularProgressBar]: [componentsNames.CircularProgressBar],
 
   [otherSymbols.image]: [componentsNames.Image],
+
+  [otherSymbols.palette]: [componentsNames.Palette],
 };

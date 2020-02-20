@@ -24,6 +24,7 @@ import Loader from 'wix-style-react/Loader';
 import LinearProgressBar from 'wix-style-react/LinearProgressBar';
 import CircularProgressBar from 'wix-style-react/CircularProgressBar';
 import Image from 'wix-style-react/Image';
+import Palette from 'wix-style-react/Palette';
 
 //Assets
 import { Layout, Cell } from 'wix-style-react/Layout';
@@ -388,6 +389,33 @@ const ImageExample = () => {
   );
 };
 
+const PaletteExample = () => {
+  const symbol = otherSymbols.palette;
+  const components = otherSymbolsToComponents[symbol];
+
+  const singleComponentProps = {
+    name: symbol,
+    componentsNames: createLinkedComponentsNames(components),
+    size: singleComponentSizes.compact,
+  };
+
+  return (
+    <SingleComponentSideBySide {...singleComponentProps}>
+      <Box height="42px">
+        <Palette
+          fill={[
+            'rgb(50, 132, 144)',
+            'rgb(50, 183, 198)',
+            'rgb(146, 224, 225)',
+            'rgb(203, 246, 255)',
+            'rgb(229, 250, 248)',
+          ]}
+        />
+      </Box>
+    </SingleComponentSideBySide>
+  );
+};
+
 const OtherFamily = () => (
   <FamilyStructure title={groupSymbol} showPreview>
     <AvatarExample />
@@ -399,6 +427,7 @@ const OtherFamily = () => (
     <LinearProgressBarExample />
     <CircularProgressBarExample />
     <ImageExample />
+    <PaletteExample />
   </FamilyStructure>
 );
 
