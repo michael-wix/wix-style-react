@@ -439,5 +439,8 @@
   },
   "MessageModalLayout": {
     "path": "src/MessageModalLayout"
+  },
+  "PopoverMenu": {
+    "path": "src/PopoverMenu"
   }
 }
