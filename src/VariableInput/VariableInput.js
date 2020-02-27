@@ -60,13 +60,15 @@ class VariableInput extends React.PureComponent {
         />
 
         {/* Status */}
-        <span className={styles.indicatorWrapper}>
-          <StatusIndicator
-            dataHook={dataHooks.indicator}
-            status={status}
-            message={statusMessage}
-          />
-        </span>
+        {status && (
+          <span className={styles.indicatorWrapper}>
+            <StatusIndicator
+              dataHook={dataHooks.indicator}
+              status={status}
+              message={statusMessage}
+            />
+          </span>
+        )}
       </div>
     );
   }
