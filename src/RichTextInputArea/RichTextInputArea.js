@@ -10,7 +10,7 @@ import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
 import { RichTextInputAreaContext } from './RichTextInputAreaContext';
 import { defaultTexts } from './RichTextInputAreaTexts';
-import ErrorIndicator from '../ErrorIndicator';
+import StatusIndicator from '../StatusIndicator';
 
 const decorator = new CompositeDecorator([
   {
@@ -156,9 +156,10 @@ class RichTextInputArea extends React.PureComponent {
           />
           {hasError && (
             <span className={styles.errorIndicator}>
-              <ErrorIndicator
+              <StatusIndicator
                 dataHook="richtextarea-error-indicator"
-                errorMessage={statusMessage}
+                status="error"
+                message={statusMessage}
               />
             </span>
           )}

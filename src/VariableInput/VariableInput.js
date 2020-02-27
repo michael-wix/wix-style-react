@@ -9,9 +9,8 @@ import {
   statusTypes,
   dataHooks,
 } from './constants';
-import ErrorIndicator from '../ErrorIndicator';
-import WarningIndicator from '../WarningIndicator';
 import styles from './VariableInput.st.css';
+import StatusIndicator from '../StatusIndicator';
 
 /** Input with variables as tags */
 class VariableInput extends React.PureComponent {
@@ -88,17 +87,19 @@ class VariableInput extends React.PureComponent {
       case statusTypes.error:
         return (
           <span className={styles.indicatorWrapper}>
-            <ErrorIndicator
+            <StatusIndicator
               dataHook={dataHooks.error}
-              errorMessage={statusMessage}
+              status="error"
+              message={statusMessage}
             />
           </span>
         );
       case statusTypes.warning:
         return (
           <span className={styles.indicatorWrapper}>
-            <WarningIndicator
+            <StatusIndicator
               dataHook={dataHooks.warning}
+              status="warning"
               warningMessage={statusMessage}
             />
           </span>
