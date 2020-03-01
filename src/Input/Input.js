@@ -202,6 +202,9 @@ class Input extends Component {
       ref: this.extractRef,
       className: classNames(styles.input, {
         [styles.disabled]: !!disabled,
+        [styles.withPrefix]: !!prefix, // For testing
+        [styles.withSuffix]: visibleSuffixCount, // For testing
+        [styles.withSuffixes]: visibleSuffixCount > 1, // For testing
       }),
       id,
       name,

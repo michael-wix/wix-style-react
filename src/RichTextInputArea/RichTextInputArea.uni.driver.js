@@ -2,7 +2,6 @@ import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 import ReactTestUtils from 'react-dom/test-utils';
 
 import { statusIndicatorDriverFactory } from '../StatusIndicator/StatusIndicator.uni.driver';
-import { statusTypes } from '../VariableInput/constants';
 
 export const getContent = base => base.$('.public-DraftEditor-content');
 export const getPlaceholder = base =>
@@ -18,15 +17,7 @@ export default (base, body) => {
     ...baseUniDriverFactory(base, body),
     isDisabled: async () =>
       Boolean(await getContent(base).attr('contenteditable')),
-    hasError: async () => {
-      const exists = await statusIndicatorDriver.exists();
-      if (exists) {
-        const status = await statusIndicatorDriver.getStatus();
-        return status === statusTypes.error;
-      }
-
-      return false;
-    },
+    hasError: statusIndicatorDriver.exists,
     getContent: () => getContent(base).text(),
     getPlaceholder: () => getPlaceholder(base).text(),
     getErrorMessage: statusIndicatorDriver.getMessage,
