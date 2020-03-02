@@ -52,6 +52,16 @@ $rowShadow: inset 0 1px 0 0 $D70;
     }
 
   }
+
+  &.highlightRowOnHover {
+    tr:hover td {
+      background-color: $B60;
+    }
+  }
+
+  .lastStickyCol {
+    border-right: 1px solid $D70;
+  }
 }
 
 .table td, .table th {
@@ -126,10 +136,6 @@ $rowShadow: inset 0 1px 0 0 $D70;
     top: auto;
     display: flex;
   }
-
-  &.lastStickyCol {
-    border-right: 1px solid $D70;
-  }
 }
 
 .table td {
@@ -164,10 +170,6 @@ $rowShadow: inset 0 1px 0 0 $D70;
     position: absolute;
     top: auto;
     background-color: white;
-  }
-
-  &.lastStickyCol {
-    border-right: 1px solid $D70;
   }
 }
 

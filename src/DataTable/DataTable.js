@@ -171,6 +171,7 @@ class DataTable extends React.Component {
             style={style}
             className={classNames(this.style.table, {
               [this.style.showLastRowDivider]: this.props.showLastRowDivider,
+              [this.style.highlightRowOnHover]: this.props.highlightRowOnHover,
             })}
           >
             {!this.props.hideHeader && <TableHeader {...this.props} />}
@@ -573,6 +574,7 @@ DataTable.defaultProps = {
   virtualizedLineHeight: 60,
   skin: 'standard',
   stickyColumns: 0,
+  highlightRowOnHover: false,
 };
 
 /* eslint-disable no-unused-vars */
@@ -690,6 +692,9 @@ DataTable.propTypes = {
 
   /** Number of columns to sticky from the left. */
   stickyColumns: PropTypes.number,
+
+  /** Highlight row on hover */
+  highlightRowOnHover: PropTypes.bool,
 };
 DataTable.displayName = 'DataTable';
 
