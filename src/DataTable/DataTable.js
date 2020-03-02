@@ -321,7 +321,9 @@ class DataTable extends React.Component {
     });
 
     const stickyColumnStyle =
-      stickyColumns > 0 ? getStickyColumnStyle(columns, column) : undefined;
+      colNum < stickyColumns
+        ? getStickyColumnStyle(columns, column)
+        : undefined;
 
     return (
       <td
@@ -475,7 +477,9 @@ class TableHeader extends Component {
   renderHeaderCell = (column, colNum) => {
     const { stickyColumns, columns } = this.props;
     const stickyColumnStyle =
-      stickyColumns > 0 ? getStickyColumnStyle(columns, column) : undefined;
+      colNum < stickyColumns
+        ? getStickyColumnStyle(columns, column)
+        : undefined;
 
     const style = {
       width: column.width,
