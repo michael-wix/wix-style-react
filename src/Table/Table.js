@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import defaultTo from 'lodash/defaultTo';
 import classNames from 'classnames';
+import { ScrollSync } from 'react-scroll-sync';
 
 import style from './Table.st.css';
 import DataTable from '../DataTable';
@@ -136,26 +137,28 @@ export class Table extends React.Component {
     }
 
     return (
-      <TableContext.Provider value={this.props}>
-        {showSelection ? (
-          <BulkSelection
-            ref={_ref => (this.bulkSelection = _ref)}
-            selectedIds={selectedIds}
-            deselectRowsByDefault={deselectRowsByDefault}
-            disabled={selectionDisabled}
-            hasMoreInBulkSelection={
-              infiniteScroll && Boolean(totalSelectableCount) && hasMore
-            }
-            totalCount={totalSelectableCount}
-            allIds={allIds}
-            onSelectionChanged={onSelectionChanged}
-          >
-            {this.renderChildren()}
-          </BulkSelection>
-        ) : (
-          this.renderChildren()
-        )}
-      </TableContext.Provider>
+      <ScrollSync>
+        <TableContext.Provider value={this.props}>
+          {showSelection ? (
+            <BulkSelection
+              ref={_ref => (this.bulkSelection = _ref)}
+              selectedIds={selectedIds}
+              deselectRowsByDefault={deselectRowsByDefault}
+              disabled={selectionDisabled}
+              hasMoreInBulkSelection={
+                infiniteScroll && Boolean(totalSelectableCount) && hasMore
+              }
+              totalCount={totalSelectableCount}
+              allIds={allIds}
+              onSelectionChanged={onSelectionChanged}
+            >
+              {this.renderChildren()}
+            </BulkSelection>
+          ) : (
+            this.renderChildren()
+          )}
+        </TableContext.Provider>
+      </ScrollSync>
     );
   }
 }

@@ -6,7 +6,7 @@ import { Animator } from 'wix-animations';
 import classNames from 'classnames';
 import defaultTo from 'lodash/defaultTo';
 import { VariableSizeList as List } from 'react-window';
-import 'sync-scroll';
+import { ScrollSyncPane } from 'react-scroll-sync';
 
 import styles from './DataTable.scss';
 import InfiniteScroll from '../utils/InfiniteScroll';
@@ -52,18 +52,19 @@ const getStickyColumnScrollOffset = (columns, stickyColumns) => {
 export const DataTableHeader = props => {
   const { dataHook, columns, stickyColumns } = props;
   return (
-    <div
-      data-hook={dataHook}
-      className={classNames(styles.tableHeaderScrollWrapper, 'syncscroll')}
-      name="table-scroll"
-      style={{
-        marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
-      }}
-    >
-      <table style={{ width: props.width }} className={styles.table}>
-        <TableHeader {...props} />
-      </table>
-    </div>
+    <ScrollSyncPane>
+      <div
+        data-hook={dataHook}
+        className={styles.tableHeaderScrollWrapper}
+        style={{
+          marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
+        }}
+      >
+        <table style={{ width: props.width }} className={styles.table}>
+          <TableHeader {...props} />
+        </table>
+      </div>
+    </ScrollSyncPane>
   );
 };
 
@@ -157,25 +158,26 @@ class DataTable extends React.Component {
     const { dataHook, columns, stickyColumns } = this.props;
     const style = { width: this.props.width };
     return (
-      <div
-        data-hook={dataHook}
-        className={classNames(this.style.tableBodyScrollWrapper, 'syncscroll')}
-        name="table-scroll"
-        style={{
-          marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
-        }}
-      >
-        <table
-          id={this.props.id}
-          style={style}
-          className={classNames(this.style.table, {
-            [this.style.showLastRowDivider]: this.props.showLastRowDivider,
-          })}
+      <ScrollSyncPane>
+        <div
+          data-hook={dataHook}
+          className={this.style.tableBodyScrollWrapper}
+          style={{
+            marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
+          }}
         >
-          {!this.props.hideHeader && <TableHeader {...this.props} />}
-          {this.renderBody(rowsToRender)}
-        </table>
-      </div>
+          <table
+            id={this.props.id}
+            style={style}
+            className={classNames(this.style.table, {
+              [this.style.showLastRowDivider]: this.props.showLastRowDivider,
+            })}
+          >
+            {!this.props.hideHeader && <TableHeader {...this.props} />}
+            {this.renderBody(rowsToRender)}
+          </table>
+        </div>
+      </ScrollSyncPane>
     );
   };
 

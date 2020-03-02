@@ -124,7 +124,6 @@ $rowShadow: inset 0 1px 0 0 $D70;
   &.sticky {
     position: absolute;
     top: auto;
-    left: 0;
     display: flex;
   }
 
@@ -164,7 +163,6 @@ $rowShadow: inset 0 1px 0 0 $D70;
   &.sticky {
     position: absolute;
     top: auto;
-    left: 0;
     background-color: white;
   }
 
