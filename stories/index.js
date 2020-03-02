@@ -125,6 +125,7 @@ require('../src/StatusIndicator/docs/index.story');
 require('../src/Stepper/docs/index.story');
 require('../src/Swatches/docs/index.story');
 require('../src/Table/docs/index.story');
+require('../src/Table/StickyTableExampleStory');
 require('../src/TableActionCell/docs/index.story');
 require('../src/TableToolbar/docs/ToolbarStory');
 require('../src/Tabs/docs/index.story');

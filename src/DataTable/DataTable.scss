@@ -120,8 +120,18 @@ $rowShadow: inset 0 1px 0 0 $D70;
   &.th-text {
     @include Text($weight: normal, $size: small);
   }
-}
 
+  &.sticky {
+    position: absolute;
+    top: auto;
+    left: 0;
+    display: flex;
+  }
+
+  &.lastStickyCol {
+    border-right: 1px solid $D70;
+  }
+}
 
 .table td {
   @include Text($weight: thin, $size: small, $secondary: true);
@@ -150,6 +160,25 @@ $rowShadow: inset 0 1px 0 0 $D70;
     text-align: right;
     text-align: end; // not supported in IE11 & Edge; 'right' as fallback
   }
+
+  &.sticky {
+    position: absolute;
+    top: auto;
+    left: 0;
+    background-color: white;
+  }
+
+  &.lastStickyCol {
+    border-right: 1px solid $D70;
+  }
+}
+
+.tableHeaderScrollWrapper {
+  overflow-x: hidden;
+}
+
+.tableBodyScrollWrapper {
+  overflow-x: auto;
 }
 
 .table.showLastRowDivider td {

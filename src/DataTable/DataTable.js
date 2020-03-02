@@ -6,6 +6,7 @@ import { Animator } from 'wix-animations';
 import classNames from 'classnames';
 import defaultTo from 'lodash/defaultTo';
 import { VariableSizeList as List } from 'react-window';
+import 'sync-scroll';
 
 import styles from './DataTable.scss';
 import InfiniteScroll from '../utils/InfiniteScroll';
@@ -15,10 +16,50 @@ import InfoIcon from '../InfoIcon';
 import { virtualRowsAreEqual } from './DataTable.utils';
 import { isMadefor } from '../FontUpgrade/utils';
 
+const CELL_FIRST_PADDING = 30;
+const CELL_PADDING = 12;
+
+const getStickyColumnStyle = (columns, column) => {
+  let left = 0;
+
+  for (let i = 0; i < columns.length; i++) {
+    const col = columns[i];
+    if (col === column) {
+      break;
+    }
+
+    const horizontalPadding =
+      i === 0 ? CELL_FIRST_PADDING + CELL_PADDING : 2 * CELL_PADDING;
+    left += parseInt(col.width, 10) + horizontalPadding;
+  }
+
+  return { left };
+};
+
+const getStickyColumnScrollOffset = (columns, stickyColumns) => {
+  let offset = 0;
+
+  for (let i = 0; i < stickyColumns; i++) {
+    const col = columns[i];
+    const horizontalPadding =
+      i === 0 ? CELL_FIRST_PADDING + CELL_PADDING : 2 * CELL_PADDING;
+    offset += parseInt(col.width, 10) + horizontalPadding;
+  }
+
+  return offset;
+};
+
 export const DataTableHeader = props => {
-  const { dataHook } = props;
+  const { dataHook, columns, stickyColumns } = props;
   return (
-    <div data-hook={dataHook}>
+    <div
+      data-hook={dataHook}
+      className={classNames(styles.tableHeaderScrollWrapper, 'syncscroll')}
+      name="table-scroll"
+      style={{
+        marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
+      }}
+    >
       <table style={{ width: props.width }} className={styles.table}>
         <TableHeader {...props} />
       </table>
@@ -113,10 +154,17 @@ class DataTable extends React.Component {
   };
 
   renderTable = rowsToRender => {
-    const { dataHook } = this.props;
+    const { dataHook, columns, stickyColumns } = this.props;
     const style = { width: this.props.width };
     return (
-      <div data-hook={dataHook}>
+      <div
+        data-hook={dataHook}
+        className={classNames(this.style.tableBodyScrollWrapper, 'syncscroll')}
+        name="table-scroll"
+        style={{
+          marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
+        }}
+      >
         <table
           id={this.props.id}
           style={style}
@@ -255,7 +303,7 @@ class DataTable extends React.Component {
   };
 
   renderCell = (rowData, column, rowNum, colNum) => {
-    const { virtualized } = this.props;
+    const { stickyColumns, columns } = this.props;
     const classes = classNames({
       [this.style.important]: column.important,
       [this.style.largeVerticalPadding]:
@@ -266,21 +314,22 @@ class DataTable extends React.Component {
       [this.style.alignStart]: column.align === 'start',
       [this.style.alignCenter]: column.align === 'center',
       [this.style.alignEnd]: column.align === 'end',
+      [this.style.sticky]: colNum < stickyColumns,
+      [this.style.lastStickyCol]: colNum === stickyColumns - 1,
     });
 
-    const width =
-      (virtualized || rowNum === 0) && this.props.hideHeader
-        ? column.width
-        : undefined;
+    const stickyColumnStyle =
+      stickyColumns > 0 ? getStickyColumnStyle(columns, column) : undefined;
 
     return (
       <td
-        style={
-          typeof column.style === 'function'
+        style={{
+          ...(typeof column.style === 'function'
             ? column.style(column, rowData, rowNum)
-            : column.style
-        }
-        width={width}
+            : column.style),
+          ...stickyColumnStyle,
+        }}
+        width={column.width}
         className={classes}
         onClick={
           column.onCellClick
@@ -422,6 +471,10 @@ class TableHeader extends Component {
   };
 
   renderHeaderCell = (column, colNum) => {
+    const { stickyColumns, columns } = this.props;
+    const stickyColumnStyle =
+      stickyColumns > 0 ? getStickyColumnStyle(columns, column) : undefined;
+
     const style = {
       width: column.width,
       padding: this.props.thPadding,
@@ -433,6 +486,7 @@ class TableHeader extends Component {
       opacity: this.props.thOpacity,
       letterSpacing: this.props.thLetterSpacing,
       cursor: column.sortable === undefined ? 'auto' : 'pointer',
+      ...stickyColumnStyle,
     };
 
     const optionalHeaderCellProps = {};
@@ -450,6 +504,8 @@ class TableHeader extends Component {
           [this.style.thSkinStandard]:
             !this.props.skin || this.props.skin === 'standard',
           [this.style.thSkinNeutral]: this.props.skin === 'neutral',
+          [this.style.sticky]: colNum < this.props.stickyColumns,
+          [this.style.lastStickyCol]: colNum === stickyColumns - 1,
         })}
         {...optionalHeaderCellProps}
       >
@@ -510,6 +566,7 @@ DataTable.defaultProps = {
   showLastRowDivider: true,
   virtualizedLineHeight: 60,
   skin: 'standard',
+  stickyColumns: 0,
 };
 
 /* eslint-disable no-unused-vars */
@@ -624,6 +681,9 @@ DataTable.propTypes = {
   ),
   /** A callback function called on each column title click. Signature `onSortClick(colData, colNum)` */
   onSortClick: PropTypes.func,
+
+  /** Number of columns to sticky from the left. */
+  stickyColumns: PropTypes.number,
 };
 DataTable.displayName = 'DataTable';
 
