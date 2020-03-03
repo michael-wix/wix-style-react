@@ -7,7 +7,6 @@ export type TooltipTextAlign = 'center' | 'start';
 export type TooltipSize = 'small' | 'medium';
 
 export type TooltipProps = {
-  upgrade: true;
   dataHook?: string;
   content?: React.ReactNode;
   disabled?: boolean;
