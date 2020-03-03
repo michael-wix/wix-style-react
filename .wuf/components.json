@@ -465,7 +465,10 @@
     "path": "src/StatusIndicator"
   },
   "BaseModalLayout": {
-    "path": "src/BaseModalLayout"
+    "path": "src/BaseModalLayout",
+    "missingFiles": [
+      "docs"
+    ]
   },
   "MessageModalLayout": {
     "path": "src/MessageModalLayout"
