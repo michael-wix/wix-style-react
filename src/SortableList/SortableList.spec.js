@@ -285,7 +285,7 @@ describe('SortableList', () => {
     const wrapper = ReactTestUtils.renderIntoDocument(
       <DragDropContextProvider backend={TestBackend}>
         <Tooltip
-          appendTo={document.body}
+          appendTo="window"
           active
           showImmediately
           content={
