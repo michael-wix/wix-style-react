@@ -9,7 +9,7 @@ import { VariableSizeList as List } from 'react-window';
 
 import styles from './DataTable.scss';
 import InfiniteScroll from '../../utils/InfiniteScroll';
-import Tooltip from '../../Tooltip/Tooltip';
+import Tooltip from '../../Tooltip';
 import InfoIcon from '../../InfoIcon';
 
 import { virtualRowsAreEqual } from './DataTable.utils';
