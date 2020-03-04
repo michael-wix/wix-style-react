@@ -5,7 +5,7 @@ import More from 'wix-ui-icons-common/More';
 import PopoverMenu from '../PopoverMenu';
 import Button from '../Button';
 import IconButton from '../IconButton';
-import Tooltip from '../Tooltip/Tooltip';
+import Tooltip from '../Tooltip';
 import { dataHooks } from './constants';
 import HoverSlot from './HoverSlot';
 import style from './TableActionCell.st.css';
