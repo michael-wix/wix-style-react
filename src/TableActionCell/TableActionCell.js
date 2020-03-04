@@ -41,7 +41,6 @@ function renderVisibleActions(actions) {
         content={
           disabled && Boolean(disabledDescription) ? disabledDescription : text
         }
-        theme="dark"
       >
         <IconButton
           skin="inverted"

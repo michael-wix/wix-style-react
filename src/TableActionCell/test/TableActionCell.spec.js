@@ -262,7 +262,7 @@ describe('Table Action Cell', () => {
     });
 
     describe('when disabledTooltipText is supplied', () => {
-      it('should show correct tooltip text', async () => {
+      it('should show correct tooltip text', () => {
         const actionTrigger = jest.fn();
 
         const disabledAction = {
@@ -282,25 +282,21 @@ describe('Table Action Cell', () => {
         );
 
         const tooltipDriver = driver.getVisibleActionTooltipDriver(0);
-        tooltipDriver.mouseEnter();
-
-        await eventually(() =>
-          expect(tooltipDriver.getContent()).toEqual(
-            'disabled item tooltip text',
-          ),
+        expect(tooltipDriver.getTooltipText()).toEqual(
+          'disabled item tooltip text',
         );
       });
     });
 
     describe('when disabledTooltipText is not supplied', () => {
-      it('should show correct tooltip text', async () => {
+      it('should show correct tooltip text', () => {
         const actionTrigger = jest.fn();
 
         const disabledAction = {
           text: `Disabled Action`,
           icon: <span>Icon</span>,
           onClick: actionTrigger,
-          disabled: true,
+          disabled: false,
         };
 
         const driver = createDriver(
@@ -312,11 +308,7 @@ describe('Table Action Cell', () => {
         );
 
         const tooltipDriver = driver.getVisibleActionTooltipDriver(0);
-        tooltipDriver.mouseEnter();
-
-        await eventually(() =>
-          expect(tooltipDriver.getContent()).toEqual('Disabled Action'),
-        );
+        expect(tooltipDriver.getTooltipText()).toEqual('Disabled Action');
       });
     });
   });
