@@ -12,16 +12,12 @@ import {
   puppeteerUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/puppeteer';
 
-import tooltipDriverFactory from '../src/Tooltip/Tooltip.puppeteer.driver';
-import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
+import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
 
-export const tooltipTestkitFactory = puppeteerTestkitFactoryCreator(
-  tooltipDriverFactory,
+export const tooltipTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  tooltipUniDriverFactory,
 );
 
-export const TooltipTestkit = puppeteerUniTestkitFactoryCreator(
-  tooltipNextDriverFactory,
-);
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 

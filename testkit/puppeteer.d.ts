@@ -25,7 +25,7 @@ interface PuppeteerTestkitParams {
 type DeprecatedPuppeteerTestkit = any;
 
 import {TooltipUniDriver} from '../src/Tooltip/Tooltip.uni.driver';
-export const TooltipTestkit: PuppeteerUniTestkitFactory<TooltipUniDriver>;
+export const tooltipTestkitFactory: PuppeteerUniTestkitFactory<TooltipUniDriver>;
 
 import {AccordionUniDriver} from '../src/Accordion/Accordion.uni.driver';
 export const accordionTestkitFactory: PuppeteerUniTestkitFactory<AccordionUniDriver>;

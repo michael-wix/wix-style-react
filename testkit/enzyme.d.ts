@@ -25,7 +25,7 @@ interface EnzymeTestkitParams {
 
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 export const tooltipTestkitFactory: EnzymeTestkitFactory<ReturnType<typeof tooltipDriverFactory>>;
-import {TooltipUniDriver} from '../src/Tooltip/Tooltip.uni.driver';
+import { TooltipUniDriver } from '../src/Tooltip/Tooltip.uni.driver';
 export const TooltipTestkit: EnzymeUniTestkitFactory<TooltipUniDriver>;
 
 type DeprecatedEnzymeTestkit = any;

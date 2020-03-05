@@ -18,16 +18,12 @@ export {
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 
-import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
-import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
+import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
 
-export const tooltipTestkitFactory = protractorTestkitFactoryCreator(
-  tooltipDriverFactory,
+export const tooltipTestkitFactory = protractorUniTestkitFactoryCreator(
+  tooltipUniDriverFactory,
 );
 
-export const TooltipTestkit = protractorUniTestkitFactoryCreator(
-  tooltipNextDriverFactory,
-);
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
