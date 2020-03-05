@@ -18,6 +18,7 @@ export interface BaseModalLayoutProps {
   footnote?: React.ReactNode,
   sideActions?: React.ReactNode,
   children: React.ReactNode,
+  additionalButtons?: React.ReactNode,
 }
 
 export default class BaseModalLayout extends React.PureComponent<BaseModalLayoutProps>{}

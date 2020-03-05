@@ -119,6 +119,7 @@ const files = [
   ['SocialButton.bundle.min.js', 17],
   ['BaseModalLayout.bundle.min.js', 10],
   ['MessageModalLayout.bundle.min.js', 10],
+  ['AnnouncementModalLayout.bundle.min.js', 10],
 ];
 
 module.exports = {
