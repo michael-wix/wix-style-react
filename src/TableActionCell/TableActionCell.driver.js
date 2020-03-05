@@ -1,6 +1,6 @@
 import ReactTestUtils from 'react-dom/test-utils';
 import { INTERNAL_DRIVER_SYMBOL } from '../../test/utils/private-drivers';
-import { popoverMenuTestkitFactory } from '../PopoverMenu';
+import { popoverMenuTestkitFactory } from '../../testkit';
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 import { dataHooks } from './constants';
 
@@ -58,7 +58,7 @@ const tableActionCellDriverFactory = ({ element, wrapper, eventTrigger }) => {
   const getVisibleActionByDataHookButtonDriver = dataHook =>
     buttonDriverFactory({
       element: getVisibleActionsWrapper().querySelector(
-        `button[data-hook="${dataHook}"]`,
+        `[data-hook="${dataHook}"]`,
       ),
     });
 
