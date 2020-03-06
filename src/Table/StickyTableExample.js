@@ -12,6 +12,11 @@ import range from '../utils/operators/range';
 const numberOfRows = 30;
 const numberOfColumns = 20;
 
+const getColumnContent = (columnIndex, rowIndex) =>
+  columnIndex === 1 && rowIndex === 2
+    ? 'A very long column text that should span multiple lines and grow the row height.'
+    : `Lorem ipsum ${columnIndex + 1}-${rowIndex + 1}`;
+
 export default () => (
   <Page upgrade height="100vh">
     <Page.Header
@@ -32,8 +37,10 @@ export default () => (
             range(0, numberOfColumns).reduce(
               (rows, columnIndex) => ({
                 ...rows,
-                [`value${columnIndex + 1}`]: `Lorem ipsum ${columnIndex +
-                  1}-${rowIndex + 1}`,
+                [`value${columnIndex + 1}`]: getColumnContent(
+                  columnIndex,
+                  rowIndex,
+                ),
               }),
               {},
             ),
@@ -46,10 +53,11 @@ export default () => (
             })),
             {
               title: '',
-              style: { padding: 0, verticalAlign: 'top', paddingTop: 15 },
               render: () => (
                 // This could be a implemented as a separate compound <Table.StickyActionCell> component for example
-                <div style={{ position: 'absolute', right: 12 }}>
+                <div
+                  style={{ position: 'absolute', right: 12, marginTop: -18 }}
+                >
                   <TableActionCell
                     primaryAction={{
                       text: 'Preview',

@@ -14,11 +14,15 @@ import Tooltip from '../Tooltip/Tooltip';
 import InfoIcon from '../InfoIcon';
 
 import { virtualRowsAreEqual } from './DataTable.utils';
-import { isMadefor } from '../FontUpgrade/utils';
 
 const CELL_FIRST_PADDING = 30;
 const CELL_PADDING = 12;
 
+// Set CSS "left" style to support multiple sticky columns.
+// This is a very basic and ugly POC code - need to rewrite it with
+// componentDidMount/componentDidUpdate, ResizeObserver and getComputedStyle
+// to support column size set with percent values as well (and not just pixels
+// as right now).
 const getStickyColumnStyle = (columns, column) => {
   let left = 0;
 
@@ -36,30 +40,11 @@ const getStickyColumnStyle = (columns, column) => {
   return { left };
 };
 
-const getStickyColumnScrollOffset = (columns, stickyColumns) => {
-  let offset = 0;
-
-  for (let i = 0; i < stickyColumns; i++) {
-    const col = columns[i];
-    const horizontalPadding =
-      i === 0 ? CELL_FIRST_PADDING + CELL_PADDING : 2 * CELL_PADDING;
-    offset += parseInt(col.width, 10) + horizontalPadding;
-  }
-
-  return offset;
-};
-
 export const DataTableHeader = props => {
-  const { dataHook, columns, stickyColumns } = props;
+  const { dataHook } = props;
   return (
     <ScrollSyncPane>
-      <div
-        data-hook={dataHook}
-        className={styles.tableHeaderScrollWrapper}
-        style={{
-          marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
-        }}
-      >
+      <div data-hook={dataHook} className={styles.tableHeaderScrollWrapper}>
         <table style={{ width: props.width }} className={styles.table}>
           <TableHeader {...props} />
         </table>
@@ -155,17 +140,11 @@ class DataTable extends React.Component {
   };
 
   renderTable = rowsToRender => {
-    const { dataHook, columns, stickyColumns } = this.props;
+    const { dataHook } = this.props;
     const style = { width: this.props.width };
     return (
       <ScrollSyncPane>
-        <div
-          data-hook={dataHook}
-          className={this.style.tableBodyScrollWrapper}
-          style={{
-            marginLeft: getStickyColumnScrollOffset(columns, stickyColumns),
-          }}
-        >
+        <div data-hook={dataHook} className={this.style.tableBodyScrollWrapper}>
           <table
             id={this.props.id}
             style={style}
