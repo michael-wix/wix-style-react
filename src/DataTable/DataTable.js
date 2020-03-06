@@ -23,6 +23,8 @@ const CELL_PADDING = 12;
 // componentDidMount/componentDidUpdate, ResizeObserver and getComputedStyle
 // to support column size set with percent values as well (and not just pixels
 // as right now).
+// Note that if we want to sticky only a single column on the left - this code
+// is not required at all, it is only necessary to support multiple sticky columns.
 const getStickyColumnStyle = (columns, column) => {
   let left = 0;
 
