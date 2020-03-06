@@ -17,11 +17,18 @@ Types of changes:
 ## Next
 
 ### Fixed
+- `<TableActionCell/>` - enable `getVisibleActionsCount` to return 0 [#5148](https://github.com/wix/wix-style-react/pull/5148)
+
+## 7.48.0 - 2020-03-05
+
+### Fixed
 
 - `<Avatar/>` - Fix testkit function `indicationExists` returning always true [#5125](https://github.com/wix/wix-style-react/pull/5125)
 - `<Table/>` - Fix virtualized table with showSelection [#5115](https://github.com/wix/wix-style-react/pull/5115)
 - `<NumberInput/>` - Disable up/down arrows when input is readOnly [#5115](https://github.com/wix/wix-style-react/pull/5115)
 - `<FillButton/>` - Add dataHook types [#5113](https://github.com/wix/wix-style-react/pull/5113)
+- `<FloatingHelper/>`- migrating component from `wix-ui-backoffice` [#5057](https://github.com/wix/wix-style-react/pull/5057)
+- `<Table/>`- support `React.RefObject` type for `scrollElement` prop [#5134](https://github.com/wix/wix-style-react/pull/5134)
 
 ## 7.47.3 - 2020-02-26
 

@@ -18,11 +18,11 @@ import {
   withoutDotsExample,
   variableWidthExample,
 } from './examples';
-import { baseScope } from '../../../stories/utils/LiveCodeExample';
+import allComponents from '../../../stories/utils/allComponents';
 
 const code = config =>
   baseCode({
-    components: baseScope,
+    components: allComponents,
     ...config,
   });
 
@@ -83,12 +83,10 @@ export default {
 
         title('Examples'),
 
-        ...[
-          { title: 'Button Skin', source: buttonSkinExample },
-          { title: 'Autoplay', source: autoplayExample },
-          { title: 'Without Dots', source: withoutDotsExample },
-          { title: 'Variable Width', source: variableWidthExample },
-        ].map(code),
+        code({ title: 'Button Skin', source: buttonSkinExample }),
+        code({ title: 'Autoplay', source: autoplayExample }),
+        code({ title: 'Without Dots', source: withoutDotsExample }),
+        code({ title: 'Variable Width', source: variableWidthExample }),
       ],
     }),
 
