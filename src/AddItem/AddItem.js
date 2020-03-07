@@ -8,7 +8,7 @@ import AddItemMedium from 'wix-ui-icons-common/system/AddItemMedium';
 import AddItemSmall from 'wix-ui-icons-common/system/AddItemSmall';
 import Add from 'wix-ui-icons-common/Add';
 
-import Tooltip from '../Tooltip/TooltipNext';
+import Tooltip from '../Tooltip';
 import Text from '../Text';
 import AddMedia from 'wix-ui-icons-common/system/AddMedia';
 import { dataHooks } from './constants';
