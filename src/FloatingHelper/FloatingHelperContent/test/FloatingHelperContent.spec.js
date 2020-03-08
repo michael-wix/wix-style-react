@@ -1,8 +1,13 @@
 import React from 'react';
 import { floatingHelperContentDriverFactory } from '../FloatingHelperContent.driver';
+import { floatingHelperContentUniDriverFactory } from '../FloatingHelperContent.uni.driver';
 import FloatingHelperContent from '../FloatingHelperContent';
 import { mount } from 'enzyme';
-import { createRendererWithDriver, cleanup } from '../../../../test/utils/unit';
+import {
+  createRendererWithUniDriver,
+  createRendererWithDriver,
+  cleanup,
+} from '../../../../test/utils/unit';
 
 describe('FloatingHelperContent', () => {
   const requiredProps = { body: 'this is the body' };
@@ -11,8 +16,19 @@ describe('FloatingHelperContent', () => {
     runTests(createRendererWithDriver(floatingHelperContentDriverFactory));
   });
 
+  describe('[async]', () => {
+    runTests(
+      createRendererWithUniDriver(floatingHelperContentUniDriverFactory),
+    );
+  });
+
   function runTests(render) {
     afterEach(() => cleanup());
+
+    it('should render', async () => {
+      const { driver } = render(<FloatingHelperContent {...requiredProps} />);
+      expect(await driver.exists()).toBe(true);
+    });
 
     describe('title prop', () => {
       it('should not have title by default', async () => {
