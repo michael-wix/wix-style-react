@@ -21,7 +21,7 @@ export interface AnnouncementModalLayoutProps {
   width?: string,
   children: React.ReactNode,
   illustration?: React.ReactNode,
-  theme?: 'standard' | 'alert' | 'premium',
+  theme?: 'standard' | 'destructive' | 'premium',
 }
 
 export default class AnnouncementModalLayout extends React.PureComponent<AnnouncementModalLayoutProps>{}
