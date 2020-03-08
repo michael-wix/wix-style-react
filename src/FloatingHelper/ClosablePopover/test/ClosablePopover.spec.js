@@ -37,21 +37,21 @@ describe('ClosablePopover', () => {
           <ClosablePopover {...requiredProps} {...props} />,
         );
         triggerClose();
-        driver.mouseEnter();
-        expect(driver.isContentElementExists()).toBe(true);
-        driver.mouseLeave();
-        await eventually(() =>
-          expect(driver.isContentElementExists()).toBe(false),
+        await driver.mouseEnter();
+        expect(await driver.isContentElementExists()).toBe(true);
+        await driver.mouseLeave();
+        await eventually(async () =>
+          expect(await driver.isContentElementExists()).toBe(false),
         );
       });
 
       it('should NOT close on mouse leave when initially opened', async () => {
         const { driver } = render(<ClosablePopover {...requiredProps} />);
-        driver.mouseEnter();
-        driver.mouseLeave();
+        await driver.mouseEnter();
+        await driver.mouseLeave();
 
-        await eventually(() =>
-          expect(driver.isContentElementExists()).toBe(true),
+        await eventually(async () =>
+          expect(await driver.isContentElementExists()).toBe(true),
         );
       });
 
@@ -62,11 +62,11 @@ describe('ClosablePopover', () => {
         const { driver } = render(
           <ClosablePopover {...requiredProps} {...props} />,
         );
-        driver.mouseEnter();
-        expect(driver.isContentElementExists()).toBe(true);
-        driver.mouseLeave();
-        await eventually(() =>
-          expect(driver.isContentElementExists()).toBe(false),
+        await driver.mouseEnter();
+        expect(await driver.isContentElementExists()).toBe(true);
+        await driver.mouseLeave();
+        await eventually(async () =>
+          expect(await driver.isContentElementExists()).toBe(false),
         );
       });
 
@@ -86,15 +86,15 @@ describe('ClosablePopover', () => {
           <ClosablePopover {...requiredProps} {...props} />,
         );
         triggerClose();
-        await eventually(() =>
-          expect(driver.isContentElementExists()).toBe(false),
+        await eventually(async () =>
+          expect(await driver.isContentElementExists()).toBe(false),
         );
-        driver.mouseEnter();
-        expect(driver.isContentElementExists()).toBe(true);
-        driver.mouseLeave();
+        await driver.mouseEnter();
+        expect(await driver.isContentElementExists()).toBe(true);
+        await driver.mouseLeave();
 
-        await eventually(() =>
-          expect(driver.isContentElementExists()).toBe(true),
+        await eventually(async () =>
+          expect(await driver.isContentElementExists()).toBe(true),
         );
       });
     });
@@ -118,7 +118,7 @@ describe('ClosablePopover', () => {
         expect(props.onClose).toBeCalled();
       });
 
-      it('should call onOpened when hovered by mouse', () => {
+      it('should call onOpened when hovered by mouse', async () => {
         let triggerClose;
 
         const props = {
@@ -134,11 +134,11 @@ describe('ClosablePopover', () => {
         );
 
         triggerClose();
-        driver.mouseEnter();
+        await driver.mouseEnter();
         expect(props.onOpen).toBeCalled();
       });
 
-      it('should call onClosed when mouse leaves after closed by close-action', () => {
+      it('should call onClosed when mouse leaves after closed by close-action', async () => {
         let triggerClose;
 
         const props = {
@@ -154,21 +154,21 @@ describe('ClosablePopover', () => {
         );
 
         triggerClose();
-        driver.mouseEnter();
-        driver.mouseLeave();
+        await driver.mouseEnter();
+        await driver.mouseLeave();
         expect(props.onClose.mock.calls.length).toBe(2);
       });
     });
 
     describe('initiallyOpened', () => {
-      it('should be initially opened', () => {
+      it('should be initially opened', async () => {
         const props = {
           initiallyOpened: true,
         };
         const { driver } = render(
           <ClosablePopover {...requiredProps} {...props} />,
         );
-        expect(driver.isOpened()).toBe(true);
+        expect(await driver.isOpened()).toBe(true);
       });
 
       it('should be initially closed', async () => {
@@ -183,18 +183,18 @@ describe('ClosablePopover', () => {
 
       it('should NOT close on mouse leave when initially opened', async () => {
         const { driver } = render(<ClosablePopover {...requiredProps} />);
-        driver.mouseEnter();
-        driver.mouseLeave();
-        await eventually(() =>
-          expect(driver.isContentElementExists()).toBe(true),
+        await driver.mouseEnter();
+        await driver.mouseLeave();
+        await eventually(async () =>
+          expect(await driver.isContentElementExists()).toBe(true),
         );
       });
     });
 
     describe('close', () => {
-      it('should be opened by default', () => {
+      it('should be opened by default', async () => {
         const { driver } = render(<ClosablePopover {...requiredProps} />);
-        expect(driver.isOpened()).toBe(true);
+        expect(await driver.isOpened()).toBe(true);
       });
 
       it('should close when closeAction called', async () => {
@@ -208,9 +208,11 @@ describe('ClosablePopover', () => {
         const { driver } = render(
           <ClosablePopover {...requiredProps} {...props} />,
         );
-        expect(driver.isOpened()).toBe(true);
+        expect(await driver.isOpened()).toBe(true);
         triggerClose();
-        await eventually(() => expect(driver.isOpened()).toBe(false));
+        await eventually(async () =>
+          expect(await driver.isOpened()).toBe(false),
+        );
       });
     });
   }
