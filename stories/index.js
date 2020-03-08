@@ -183,7 +183,8 @@ require('./Tooltip/index.story'); // 7.1 Tooltip
 require('./PopoverMenu/index.story'); // 7.3 PopoverMenu
 
 // 9. Modals
-require('../src/MessageModalLayout/docs/index.story'); // 9.2 Message Modal
+require('../src/MessageModalLayout/docs/index.story'); // 9.1 Message Modal
+require('../src/AnnouncementModalLayout/docs/index.story'); // 9.2 Announcement Modal
 require('../src/CustomModalLayout/docs/design.story'); // 9.3 Custom Modal
 require('./ModalMobileLayout/index.story'); // 9.5 Mobile Modal
 require('../src/MessageBox/docs');

@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-export interface BaseModalLayoutProps {
+export interface AnnouncementModalLayoutProps {
+  className?: string,
+  dataHook?: string,
   title?: React.ReactNode,
   subtitle?: string,
   primaryButtonText?: string,
@@ -11,12 +13,15 @@ export interface BaseModalLayoutProps {
   //TODO - refactor when wsr-types is merged to this project
   secondaryButtonProps?: object,
   secondaryButtonOnClick?: () => void,
+  linkText?: string,
+  linkOnClick?: () => void,
   onCloseButtonClick?: () => void,
-  removeContentPadding?: boolean,
   footnote?: React.ReactNode,
   sideActions?: React.ReactNode,
+  width?: string,
   children: React.ReactNode,
-  additionalButtons?: React.ReactNode,
+  illustration?: React.ReactNode,
+  theme?: 'standard' | 'alert' | 'premium',
 }
 
-export default class BaseModalLayout extends React.PureComponent<BaseModalLayoutProps>{}
+export default class AnnouncementModalLayout extends React.PureComponent<AnnouncementModalLayoutProps>{}
