@@ -1,11 +1,13 @@
 import React from 'react';
 import eventually from 'wix-eventually';
 import { closablePopoverDriverFactory } from '../ClosablePopover.driver';
+import { closablePopoverUniDriverFactory } from '../ClosablePopover.uni.driver';
 import ClosablePopover from '../ClosablePopover';
 import { enzymeTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
 import { mount } from 'enzyme';
 import {
   createRendererWithDriver,
+  createRendererWithUniDriver,
   cleanup,
 } from '../../../../test/utils/react/index';
 
@@ -18,6 +20,10 @@ describe('ClosablePopover', () => {
 
   describe('[sync]', () => {
     runTests(createRendererWithDriver(closablePopoverDriverFactory));
+  });
+
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(closablePopoverUniDriverFactory));
   });
 
   function runTests(render) {
@@ -178,7 +184,7 @@ describe('ClosablePopover', () => {
         const { driver } = render(
           <ClosablePopover {...requiredProps} {...props} />,
         );
-        expect(driver.isOpened()).toBe(false);
+        expect(await driver.isOpened()).toBe(false);
       });
 
       it('should NOT close on mouse leave when initially opened', async () => {
