@@ -5,7 +5,7 @@ export interface MessageModalLayoutProps extends BaseModalLayoutProps {
   className?: string,
   dataHook?: string,
   illustration?: React.ReactNode,
-  theme?: 'standard' | 'alert' | 'premium',
+  theme?: 'standard' | 'destructive' | 'premium',
 }
 
 
