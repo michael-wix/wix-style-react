@@ -18,6 +18,12 @@ export {
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 
+import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
+
+export const tooltipTestkitFactory = protractorUniTestkitFactoryCreator(
+  tooltipUniDriverFactory,
+);
+
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -39,7 +45,6 @@ const load = module => {
   return defaultOrFirstExport;
 };
 
-export const tooltipTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.uni.driver')));
 export const accordionTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.uni.driver')));
 export const addItemTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/AddItem/AddItem.uni.driver')));
 export const autoCompleteTestkitFactory = protractorTestkitFactoryCreator(load(require('../src/AutoComplete/AutoComplete.protractor.driver')));

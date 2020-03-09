@@ -11,6 +11,17 @@ import {
   enzymeUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/enzyme';
 
+import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
+import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
+
+export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(
+  tooltipDriverFactory,
+);
+
+export const TooltipTestkit = enzymeUniTestkitFactoryCreator(
+  tooltipUniDriverFactory,
+);
+
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -32,7 +43,6 @@ const load = module => {
   return defaultOrFirstExport;
 };
 
-export const tooltipTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.uni.driver')));
 export const accordionTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.uni.driver')));
 export const addItemTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AddItem/AddItem.driver')));
 export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/AutoComplete/AutoComplete.driver')));

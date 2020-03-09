@@ -5,4 +5,5 @@ export interface TooltipUniDriver extends BaseUniDriver {
   mouseEnter(): Promise<void>;
   mouseLeave(): Promise<void>;
   getTooltipText(): Promise<string>;
+  clickOutside(): Promise<void>;
 }
