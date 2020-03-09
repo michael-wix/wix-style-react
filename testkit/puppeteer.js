@@ -12,12 +12,6 @@ import {
   puppeteerUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/puppeteer';
 
-import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
-
-export const tooltipTestkitFactory = puppeteerUniTestkitFactoryCreator(
-  tooltipUniDriverFactory,
-);
-
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -110,6 +104,7 @@ export const textButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(load(r
 export const thumbnailTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Thumbnail/Thumbnail.uni.driver')));
 export const timeInputTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/TimeInput/TimeInput.uni.driver')));
 export const toggleSwitchTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/ToggleSwitch/ToggleSwitch.uni.driver')));
+export const tooltipTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.uni.driver')));
 export const sidebarSectionItemTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/SidebarSectionItem/SidebarSectionItem.uni.driver')));
 export const sidebarDividerTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/SidebarDivider/SidebarDivider.uni.driver')));
 export const sidebarBackButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/SidebarBackButton/SidebarBackButton.uni.driver')));

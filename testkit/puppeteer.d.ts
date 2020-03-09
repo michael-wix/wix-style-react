@@ -24,8 +24,6 @@ interface PuppeteerTestkitParams {
 
 type DeprecatedPuppeteerTestkit = any;
 
-import {TooltipUniDriver} from '../src/Tooltip/Tooltip.uni.driver';
-export const tooltipTestkitFactory: PuppeteerUniTestkitFactory<TooltipUniDriver>;
 
 import {AccordionUniDriver} from '../src/Accordion/Accordion.uni.driver';
 export const accordionTestkitFactory: PuppeteerUniTestkitFactory<AccordionUniDriver>;
@@ -169,6 +167,8 @@ import {TimeInputUniDriver} from '../src/TimeInput/TimeInput.uni.driver';
 export const timeInputTestkitFactory: PuppeteerUniTestkitFactory<TimeInputUniDriver>;
 import {ToggleSwitchUniDriver} from '../src/ToggleSwitch/ToggleSwitch.uni.driver';
 export const toggleSwitchTestkitFactory: PuppeteerUniTestkitFactory<ToggleSwitchUniDriver>;
+import {TooltipUniDriver} from '../src/Tooltip/Tooltip.uni.driver';
+export const tooltipTestkitFactory: PuppeteerUniTestkitFactory<TooltipUniDriver>;
 import {SidebarSectionItemUniDriver} from '../src/SidebarSectionItem/SidebarSectionItem.uni.driver';
 export const sidebarSectionItemTestkitFactory: PuppeteerUniTestkitFactory<SidebarSectionItemUniDriver>;
 import {SidebarDividerUniDriver} from '../src/SidebarDivider/SidebarDivider.uni.driver';

@@ -10,12 +10,6 @@ export {
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 
-import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
-
-export const tooltipTestkitFactory = protractorUniTestkitFactoryCreator(
-  tooltipUniDriverFactory,
-);
-
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 

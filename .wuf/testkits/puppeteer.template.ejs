@@ -4,12 +4,6 @@ import {
   puppeteerUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/puppeteer';
 
-import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
-
-export const tooltipTestkitFactory = puppeteerUniTestkitFactoryCreator(
-  tooltipUniDriverFactory,
-);
-
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 

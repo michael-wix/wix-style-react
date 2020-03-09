@@ -3,17 +3,6 @@ import {
   enzymeUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/enzyme';
 
-import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
-import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
-
-export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(
-  tooltipDriverFactory,
-);
-
-export const TooltipTestkit = enzymeUniTestkitFactoryCreator(
-  tooltipUniDriverFactory,
-);
-
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 

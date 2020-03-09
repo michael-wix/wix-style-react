@@ -18,12 +18,6 @@ export {
   scrollToElement,
 } from 'wix-ui-test-utils/protractor';
 
-import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
-
-export const tooltipTestkitFactory = protractorUniTestkitFactoryCreator(
-  tooltipUniDriverFactory,
-);
-
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -124,6 +118,7 @@ export const textButtonTestkitFactory = protractorUniTestkitFactoryCreator(load(
 export const thumbnailTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/Thumbnail/Thumbnail.uni.driver')));
 export const timeInputTestkitFactory = protractorTestkitFactoryCreator(load(require('../src/TimeInput/TimeInput.uni.driver')));
 export const toggleSwitchTestkitFactory = protractorTestkitFactoryCreator(load(require('../src/ToggleSwitch/ToggleSwitch.protractor.driver')));
+export const tooltipTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.uni.driver')));
 export const sidebarSectionItemTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/SidebarSectionItem/SidebarSectionItem.uni.driver')));
 export const sidebarDividerTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/SidebarDivider/SidebarDivider.uni.driver')));
 export const sidebarBackButtonTestkitFactory = protractorUniTestkitFactoryCreator(load(require('../src/SidebarBackButton/SidebarBackButton.uni.driver')));
