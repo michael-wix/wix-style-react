@@ -512,9 +512,6 @@ DataTable.defaultProps = {
   skin: 'standard',
 };
 
-/* eslint-disable no-unused-vars */
-const { moveBy, dataHook, ...infoTooltipProps } = Tooltip.propTypes;
-
 DataTable.propTypes = {
   dataHook: PropTypes.string,
   /** An id to pass to the table */
@@ -527,7 +524,12 @@ DataTable.propTypes = {
       title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
       render: PropTypes.func.isRequired,
       sortable: PropTypes.bool,
-      infoTooltipProps: PropTypes.shape(infoTooltipProps),
+      infoTooltipProps: PropTypes.shape(
+        (() => {
+          const { moveBy, dataHook, ...infoTooltipProps } = Tooltip.propTypes;
+          return infoTooltipProps;
+        })(),
+      ),
       sortDescending: PropTypes.bool,
       align: PropTypes.oneOf(['start', 'center', 'end']),
     }),
