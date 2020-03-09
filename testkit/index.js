@@ -11,17 +11,6 @@ import {
   uniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/vanilla';
 
-import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
-import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
-
-export const tooltipTestkitFactory = testkitFactoryCreator(
-  tooltipDriverFactory,
-);
-
-export const TooltipTestkit = uniTestkitFactoryCreator(
-  tooltipUniDriverFactory,
-);
-
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -43,6 +32,7 @@ const load = module => {
   return defaultOrFirstExport;
 };
 
+export const tooltipTestkitFactory = uniTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.uni.driver')));
 export const accordionTestkitFactory = uniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.uni.driver')));
 export const addItemTestkitFactory = testkitFactoryCreator(load(require('../src/AddItem/AddItem.driver')));
 export const autoCompleteTestkitFactory = testkitFactoryCreator(load(require('../src/AutoComplete/AutoComplete.driver')));

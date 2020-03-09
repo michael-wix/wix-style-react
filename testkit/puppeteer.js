@@ -12,12 +12,6 @@ import {
   puppeteerUniTestkitFactoryCreator,
 } from 'wix-ui-test-utils/puppeteer';
 
-import { tooltipDriverFactory as tooltipUniDriverFactory } from '../src/Tooltip/Tooltip.uni.driver';
-
-export const tooltipTestkitFactory = puppeteerUniTestkitFactoryCreator(
-  tooltipUniDriverFactory,
-);
-
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
 
@@ -39,6 +33,7 @@ const load = module => {
   return defaultOrFirstExport;
 };
 
+export const tooltipTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Tooltip/Tooltip.uni.driver')));
 export const accordionTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/Accordion/Accordion.uni.driver')));
 export const addItemTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/AddItem/AddItem.uni.driver')));
 export const autoCompleteTestkitFactory = puppeteerUniTestkitFactoryCreator(load(require('../src/AutoComplete/AutoComplete.uni.driver')));
