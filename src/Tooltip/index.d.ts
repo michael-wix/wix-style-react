@@ -6,7 +6,7 @@ export type TooltipAppendTo = 'window' | 'scrollParent' | 'viewport' | 'parent';
 export type TooltipTextAlign = 'center' | 'start';
 export type TooltipSize = 'small' | 'medium';
 
-export type TooltipProps = {
+export interface TooltipProps {
   dataHook?: string;
   content?: React.ReactNode;
   disabled?: boolean;
@@ -26,3 +26,5 @@ export type TooltipProps = {
   close?: () => void;
   open?: () => void;
 }
+
+export default class Tooltip extends React.PureComponent<TooltipProps>{}

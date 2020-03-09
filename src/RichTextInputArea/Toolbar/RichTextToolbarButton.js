@@ -20,7 +20,7 @@ const RichTextToolbarButton = ({
         isDisabled && styles.disabled,
         !isDisabled && isActive && styles.active,
       )}
-      onClick={!isDisabled ? onClick : undefined}
+      onClick={isDisabled ? undefined : onClick}
     >
       {children}
     </button>

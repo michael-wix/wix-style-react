@@ -524,12 +524,15 @@ DataTable.propTypes = {
       title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
       render: PropTypes.func.isRequired,
       sortable: PropTypes.bool,
-      infoTooltipProps: PropTypes.shape(
-        (() => {
-          const { moveBy, dataHook, ...infoTooltipProps } = Tooltip.propTypes;
-          return infoTooltipProps;
-        })(),
-      ),
+      infoTooltipProps: (() => {
+        const {
+          moveBy,
+          dataHook,
+          children,
+          ...infoTooltipProps
+        } = Tooltip.propTypes;
+        return PropTypes.shape(infoTooltipProps);
+      })(),
       sortDescending: PropTypes.bool,
       align: PropTypes.oneOf(['start', 'center', 'end']),
     }),

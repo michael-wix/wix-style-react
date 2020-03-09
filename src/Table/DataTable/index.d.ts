@@ -54,7 +54,7 @@ export type DataTableColumn = {
   style?: React.CSSProperties;
   infoTooltipProps?: OmitPolyfill<
     Partial<TooltipProps>,
-    'dataHook' | 'moveBy'
+    'dataHook' | 'moveBy' | 'children'
   >;
   align?: DataTableColumnAlign;
 };
