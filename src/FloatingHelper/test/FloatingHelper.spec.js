@@ -6,6 +6,7 @@ import FloatingHelper from '../FloatingHelper';
 import FloatingHelperContent from '../FloatingHelperContent/FloatingHelperContent';
 import ClosablePopover from '../ClosablePopover/ClosablePopover';
 import { createRendererWithDriver, cleanup } from '../../../test/utils/unit';
+import InputWithTags from '../../MultiSelect/InputWithTags';
 
 describe('FloatingHelper', () => {
   const title = 'my title';
@@ -92,19 +93,26 @@ describe('FloatingHelper', () => {
       });
     });
 
-    // describe('programmatic open/close sanity', () => {
-    //   it('should open and close programmatically', async () => {
-    //     const props = { initiallyOpened: false, dataHook };
-    //     const { driver } = render(<FloatingHelper {...requiredProps} {...props} />);
-    //
-    //     expect(driver.isOpened()).toBe(false);
-    //     wrapper.instance().open();
-    //     expect(driver.isOpened()).toBe(true);
-    //     wrapper.instance().close();
-    //     await waitForClose(driver);
-    //     expect(driver.isOpened()).toBe(false);
-    //   });
-    // });
+    describe('programmatic open/close sanity', () => {
+      it('should open and close programmatically', async () => {
+        const props = { initiallyOpened: false, dataHook };
+        let component;
+        const { driver } = render(
+          <FloatingHelper
+            ref={comp => (component = comp)}
+            {...requiredProps}
+            {...props}
+          />,
+        );
+
+        expect(driver.isOpened()).toBe(false);
+        component.open();
+        expect(driver.isOpened()).toBe(true);
+        component.close();
+        await waitForClose(driver);
+        expect(driver.isOpened()).toBe(false);
+      });
+    });
 
     describe('controlled', () => {
       it('should call onClose but not close', async () => {
