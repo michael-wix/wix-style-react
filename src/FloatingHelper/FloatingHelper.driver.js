@@ -16,10 +16,6 @@ const floatingHelperDriverFactory = ({ wrapper, element, eventTrigger }) => {
   const contentWrapper = () =>
     popoverContent().querySelector(`[data-hook='${dataHooks.contentWrapper}']`);
 
-  // console.error( 'eventTrigger:' ,eventTrigger);
-  // console.error( 'wrapper:' , wrapper);
-  // console.error( 'element:' , element);
-
   return {
     ...closablePopoverDriver,
     /** check whether the helper has a close button */
