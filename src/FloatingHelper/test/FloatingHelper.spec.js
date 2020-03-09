@@ -1,12 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import eventually from 'wix-eventually';
 import floatingHelperDriverFactory from '../FloatingHelper.driver';
 import FloatingHelper from '../FloatingHelper';
 import FloatingHelperContent from '../FloatingHelperContent/FloatingHelperContent';
 import ClosablePopover from '../ClosablePopover/ClosablePopover';
 import { createRendererWithDriver, cleanup } from '../../../test/utils/unit';
-import InputWithTags from '../../MultiSelect/InputWithTags';
 
 describe('FloatingHelper', () => {
   const title = 'my title';
@@ -26,61 +24,61 @@ describe('FloatingHelper', () => {
     afterEach(() => cleanup());
 
     const waitForClose = driver =>
-      eventually(() => expect(driver.isOpened()).toBe(false));
+      eventually(async () => expect(await driver.isOpened()).toBe(false));
 
-    it('should have helper content (with title)', () => {
+    it('should have helper content (with title)', async () => {
       const props = { dataHook };
 
       const { driver } = render(
         <FloatingHelper {...requiredProps} {...props} />,
       );
-      expect(driver.getHelperContentDriver().exists()).toBe(true);
+      expect(await driver.getHelperContentDriver().exists()).toBe(true);
       expect(driver.getHelperContentDriver().getTitleContent()).toBe(title);
     });
 
     describe('width', () => {
-      it('should have default width of 444', () => {
+      it('should have default width of 444', async () => {
         const props = { dataHook };
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        expect(driver.getWidth()).toBe('444px');
+        expect(await driver.getWidth()).toBe('444px');
       });
 
-      it('should have a custom width (which is a string)', () => {
+      it('should have a custom width (which is a string)', async () => {
         const props = { width: '500px', dataHook };
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        expect(driver.getWidth()).toBe(props.width);
+        expect(await driver.getWidth()).toBe(props.width);
       });
 
-      it('should have a custom width (which is a number)', () => {
+      it('should have a custom width (which is a number)', async () => {
         const props = { width: 600, dataHook };
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        expect(driver.getWidth()).toBe(`${props.width}px`);
+        expect(await driver.getWidth()).toBe(`${props.width}px`);
       });
     });
 
     describe('close-button', () => {
-      it('should have a close-button by default', () => {
+      it('should have a close-button by default', async () => {
         const props = { dataHook };
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        expect(driver.hasCloseButton()).toBe(true);
+        expect(await driver.hasCloseButton()).toBe(true);
       });
     });
 
     describe('close', () => {
-      it('should be opened by default', () => {
+      it('should be opened by default', async () => {
         const props = { dataHook };
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        expect(driver.isOpened()).toBe(true);
+        expect(await driver.isOpened()).toBe(true);
       });
 
       it('should close popover when close-button is clicked', async () => {
@@ -88,7 +86,7 @@ describe('FloatingHelper', () => {
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        driver.clickCloseButton();
+        await driver.clickCloseButton();
         await waitForClose(driver);
       });
     });
@@ -105,12 +103,12 @@ describe('FloatingHelper', () => {
           />,
         );
 
-        expect(driver.isOpened()).toBe(false);
+        expect(await driver.isOpened()).toBe(false);
         component.open();
-        expect(driver.isOpened()).toBe(true);
+        expect(await driver.isOpened()).toBe(true);
         component.close();
         await waitForClose(driver);
-        expect(driver.isOpened()).toBe(false);
+        expect(await driver.isOpened()).toBe(false);
       });
     });
 
@@ -125,9 +123,9 @@ describe('FloatingHelper', () => {
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        driver.clickCloseButton();
+        await driver.clickCloseButton();
         expect(props.onClose).toBeCalled();
-        expect(driver.isOpened()).toBe(true);
+        expect(await driver.isOpened()).toBe(true);
       });
 
       it('should not throw error when closeButton clicked and there is no onClose callback', async () => {
@@ -135,13 +133,13 @@ describe('FloatingHelper', () => {
         const { driver } = render(
           <FloatingHelper {...requiredProps} {...props} />,
         );
-        const click = () => driver.clickCloseButton();
+        const click = async () => await driver.clickCloseButton();
         expect(click).not.toThrowError();
       });
     });
 
     // describe('appendTo', () => {
-    //   it('should be window by default', () => {
+    //   it('should be window by default', async () => {
     //     const { driver } = render(<FloatingHelper {...requiredProps} />);
     //     expect(wrapper.find(ClosablePopover).props().appendTo).toBe('window');
     //   });
