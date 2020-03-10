@@ -1,10 +1,15 @@
 import React from 'react';
 import eventually from 'wix-eventually';
 import floatingHelperDriverFactory from '../FloatingHelper.driver';
+import floatingHelperUniDriverFactory from '../FloatingHelper.uni.driver';
 import FloatingHelper from '../FloatingHelper';
 import FloatingHelperContent from '../FloatingHelperContent/FloatingHelperContent';
 import ClosablePopover from '../ClosablePopover/ClosablePopover';
-import { createRendererWithDriver, cleanup } from '../../../test/utils/unit';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../../test/utils/unit';
 
 describe('FloatingHelper', () => {
   const title = 'my title';
@@ -18,6 +23,10 @@ describe('FloatingHelper', () => {
 
   describe('[sync]', () => {
     runTest(createRendererWithDriver(floatingHelperDriverFactory));
+  });
+
+  describe('[async]', () => {
+    runTest(createRendererWithUniDriver(floatingHelperUniDriverFactory));
   });
 
   function runTest(render) {
